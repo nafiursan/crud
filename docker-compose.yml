@@ -1,0 +1,22 @@
+version: '3'
+services:
+    db:
+        container_name: nafiur-db-1
+        image: mysql:8.0
+        restart: always
+        environment:
+           - MYSQL_ROOT_PASSWORD=qwerty12
+           - MYSQL_DATABASE=onlineshop
+        networks:
+           - my-network
+    web:
+        container_name: nafiur-web-1
+        image: nafiur30080/web:18
+        depends_on:
+            - db
+        ports:
+            - 83:80
+        networks:
+            - my-network
+networks:
+  my-network:
